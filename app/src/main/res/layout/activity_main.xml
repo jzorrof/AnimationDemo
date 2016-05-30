@@ -29,4 +29,8 @@
         android:text="test3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+    <include layout="@layout/my_view"
+        android:layout_below="@+id/test_bt"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </RelativeLayout>
