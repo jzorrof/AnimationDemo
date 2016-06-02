@@ -20,10 +20,8 @@ public class PieChart extends View {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart,
                 0,0);
         try {
-
-
-        mIsText = a.getBoolean(R.styleable.PieChart_isShowText, false);
-        mLabelPosition = a.getInteger(R.styleable.PieChart_labelPosition, 0);
+            mIsText = a.getBoolean(R.styleable.PieChart_isShowText, false);
+            mLabelPosition = a.getInteger(R.styleable.PieChart_labelPosition, 0);
         } finally {
             a.recycle();
         }
