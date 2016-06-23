@@ -8,14 +8,14 @@ import android.view.View;
 /**
  * Created by fanzhong on 16-5-24.
  */
-public class PieChart extends View {
+public class MyPieChart extends View {
     private boolean mIsText;
     private int mLabelPosition;
-    public PieChart(Context context) {
+    public MyPieChart(Context context) {
         super(context);
     }
 
-    public PieChart(Context context, AttributeSet attrs) {
+    public MyPieChart(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart,
                 0,0);
@@ -39,7 +39,7 @@ public class PieChart extends View {
         requestLayout();
     }
 
-    public PieChart(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyPieChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
