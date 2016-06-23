@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#000000"
     tools:context="com.example.fanzhong.animationdemo.MainActivity">
 
     <com.example.fanzhong.animationdemo.TestButton
@@ -15,13 +16,14 @@
         android:layout_height="wrap_content"
         android:text="test1"/>
 
+
     <com.example.fanzhong.animationdemo.TestButton
         android:id="@+id/test_bt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        />
     <com.example.fanzhong.animationdemo.TestButton
         android:id="@+id/test_bt3"
         android:layout_width="wrap_content"
@@ -29,8 +31,8 @@
         android:text="test3"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-    <include layout="@layout/my_view"
-        android:layout_below="@+id/test_bt"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+
+    <include
+        layout="@layout/test"/>
+
 </RelativeLayout>

@@ -42,4 +42,8 @@ public class PieChart extends View {
     public PieChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+    private void init(){
+
+    }
 }

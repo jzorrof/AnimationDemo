@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Animation animator = null;
     Animation animator2 = null;
     Animation animator3 = null;
+    Animation animator4 = null;
+    Animation animator5 = null;
+    ImageView test = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         btgroup = new ArrayList<>();
@@ -33,6 +37,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animator = AnimationUtils.loadAnimation(this, R.anim.test_interpolator);
         animator2 = AnimationUtils.loadAnimation(this, R.anim.test_interpolator2);
         animator3 = AnimationUtils.loadAnimation(this, R.anim.test_interpolator3);
+        animator4 = AnimationUtils.loadAnimation(this, R.anim.test_roll);
+        animator5 = AnimationUtils.loadAnimation(this, R.anim.test_reroll);
+        test = (ImageView) findViewById(R.id.imageView);
+        if (test != null) {
+            test.setImageAlpha(0);
+        }
         testBT = (TestButton) findViewById(R.id.test_bt);
         testBT2 = (TestButton) findViewById(R.id.test_bt2);
         testBT3 = (TestButton) findViewById(R.id.test_bt3);
@@ -81,6 +91,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 //        TestButton();
+        animator5.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                test.setImageAlpha(255);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                test.setImageAlpha(0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
     }
 //
@@ -114,10 +140,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == testBT){
             testBT.setText("CLICK");
             testBT.startAnimation(animator);
+            test.setImageAlpha(255);
+            test.startAnimation(animator5);
+
             Log.e("Fanzhong","click");
         } else if(v == testBT2){
             testBT2.setText("click");
-            testBT2.startAnimation(animator2);
+            testBT2.startAnimation(animator3);
         } else if(v == testBT3){
             testBT2.setText("click");
             testBT3.startAnimation(animator3);

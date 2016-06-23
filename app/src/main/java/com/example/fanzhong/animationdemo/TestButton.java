@@ -24,6 +24,9 @@ public class TestButton extends Button {
         super(context, attrs, defStyleAttr);
     }
 
+    private void init(){
+    }
+
     public void ani(){
         int i = -1;
         while (i != -1){
