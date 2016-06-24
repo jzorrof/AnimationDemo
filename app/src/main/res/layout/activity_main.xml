@@ -17,20 +17,20 @@
         android:text="test1"/>
 
 
-    <com.example.fanzhong.animationdemo.TestButton
-        android:id="@+id/test_bt2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        />
-    <com.example.fanzhong.animationdemo.TestButton
-        android:id="@+id/test_bt3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <!--<com.example.fanzhong.animationdemo.TestButton-->
+        <!--android:id="@+id/test_bt2"-->
+        <!--android:layout_width="60dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--/>-->
+    <!--<com.example.fanzhong.animationdemo.TestButton-->
+        <!--android:id="@+id/test_bt3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="test3"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
     <include
         layout="@layout/test"/>

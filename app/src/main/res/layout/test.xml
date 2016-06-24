@@ -4,17 +4,17 @@
     android:layout_height="match_parent">
     <com.example.fanzhong.animationdemo.TestButton
         android:id="@+id/test_bt2"
-        android:background="@drawable/clear"
+        android:background="@drawable/selector"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="30dp"/>
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/loading"
         android:id="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>

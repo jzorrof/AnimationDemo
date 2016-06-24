@@ -1,6 +1,7 @@
 package com.example.fanzhong.animationdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Button;
@@ -28,18 +29,7 @@ public class TestButton extends Button {
     }
 
     public void ani(){
-        int i = -1;
-        while (i != -1){
-
-        }
-
-        do {
-            
-        }while (i == -1);
-        animate().translationX(100)
-                .alpha(0f)
-                .setStartDelay(1000)
-                .start();
-        invalidate();
+        Intent intent = new Intent("TESTTEST");
+        getContext().sendBroadcast(intent);
     }
 }

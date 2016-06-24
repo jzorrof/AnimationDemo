@@ -1,6 +1,9 @@
 package com.example.fanzhong.animationdemo;
 
 import android.animation.Animator;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -45,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         testBT = (TestButton) findViewById(R.id.test_bt);
         testBT2 = (TestButton) findViewById(R.id.test_bt2);
-        testBT3 = (TestButton) findViewById(R.id.test_bt3);
+        //testBT3 = (TestButton) findViewById(R.id.test_bt3);
         testBT.setOnClickListener(this);
         testBT2.setOnClickListener(this);
-        testBT3.setOnClickListener(this);
+//        testBT3.setOnClickListener(this);
         animator.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 //        TestButton();
-        animator5.setAnimationListener(new Animation.AnimationListener() {
+        animator4.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 test.setImageAlpha(255);
@@ -135,21 +139,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
     }
 
+    String packageName;
     @Override
     public void onClick(View v) {
-        if(v == testBT){
-            testBT.setText("CLICK");
-            testBT.startAnimation(animator);
+        if(v == testBT2) {
             test.setImageAlpha(255);
-            test.startAnimation(animator5);
-
-            Log.e("Fanzhong","click");
-        } else if(v == testBT2){
-            testBT2.setText("click");
-            testBT2.startAnimation(animator3);
-        } else if(v == testBT3){
-            testBT2.setText("click");
-            testBT3.startAnimation(animator3);
+            test.startAnimation(animator4);
+            Intent intent = new Intent();
+            intent.setAction("");
+            intent.putExtra("packageName",packageName);
+            sendBroadcast(intent);
+            testBT2.ani();
+            Log.e("Fanzhong", "click");
         }
+        final Intent intent = new Intent();
+
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                intent.setAction("");
+                intent.putExtra("packageName",packageName);
+                sendBroadcast(intent);
+            }
+        };
+//        } else if(v == testBT2) {
+//            testBT2.setText("click");
+//            testBT2.startAnimation(animator3);
+//        }
+//        } else if(v == testBT3){
+//            testBT2.setText("click");
+//            testBT3.startAnimation(animator3);
+//        }
     }
 }
+
