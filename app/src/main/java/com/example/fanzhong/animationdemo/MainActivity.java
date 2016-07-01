@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myDatabase.addPackageName(new PackageList("com.android.abcd","1234"));
         myDatabase.addPackageName(new PackageList("com.android.abce","1234"));
         myDatabase.addPackageName(new PackageList("com.android.abce","1234"));
+        SimpleView sv = (SimpleView) findViewById(R.id.sv_1);
 
         Log.d("Reading: ", "Reading all contacts..");
         List<PackageList> contacts = myDatabase.getAllPackage();
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animator3 = AnimationUtils.loadAnimation(this, R.anim.test_interpolator3);
         animator4 = AnimationUtils.loadAnimation(this, R.anim.test_roll);
         animator5 = AnimationUtils.loadAnimation(this, R.anim.test_reroll);
+
         test = (ImageView) findViewById(R.id.imageView);
         if (test != null) {
             test.setImageAlpha(0);
