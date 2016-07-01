@@ -37,7 +37,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         btgroup = new ArrayList<>();
         super.onCreate(savedInstanceState);
+        MyDatabase myDatabase = new MyDatabase(this);
+        myDatabase.addPackageName(new PackageList("com.android.abcd","1234"));
+        myDatabase.addPackageName(new PackageList("com.android.abce","1234"));
+        myDatabase.addPackageName(new PackageList("com.android.abce","1234"));
+
+        Log.d("Reading: ", "Reading all contacts..");
+        List<PackageList> contacts = myDatabase.getAllPackage();
+        for(PackageList p: contacts ){
+            Log.d("Reading: ", "PackageName: " + p.getPackageName() + " PackageKey: " + p.getPackageKey());
+        }
+
+
         setContentView(R.layout.activity_main);
+        String a = android.provider.Settings.Global.getString(this.getContentResolver(), "custom_launcher");
         animator = AnimationUtils.loadAnimation(this, R.anim.test_interpolator);
         animator2 = AnimationUtils.loadAnimation(this, R.anim.test_interpolator2);
         animator3 = AnimationUtils.loadAnimation(this, R.anim.test_interpolator3);

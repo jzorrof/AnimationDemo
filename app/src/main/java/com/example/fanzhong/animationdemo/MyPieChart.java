@@ -44,6 +44,8 @@ public class MyPieChart extends View {
     }
 
     private void init(){
+        String s="a";
+        s.equalsIgnoreCase("b");
 
     }
 }
