@@ -9,11 +9,14 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -22,16 +25,24 @@ import java.util.List;
 
 import static android.support.v4.view.ViewCompat.animate;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener{
     ArrayList<TestButton> btgroup;
     TestButton testBT;
     TestButton testBT2;
     TestButton testBT3;
+    Button testBt1;
+    ViewGroup mRrootLayout;
+    private int _xDelta;
+    private int _yDelta;
     Animation animator = null;
     Animation animator2 = null;
     Animation animator3 = null;
     Animation animator4 = null;
     Animation animator5 = null;
+    int screenWidth;
+    int screenHeight;
+    int lastX;
+    int lastY;
     ImageView test = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +74,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             test.setImageAlpha(0);
         }
         testBT = (TestButton) findViewById(R.id.test_bt);
+        testBt1 = (Button)findViewById(R.id.test_bt1);
         testBT2 = (TestButton) findViewById(R.id.test_bt2);
+        testBt1.setOnTouchListener(this);
+        testBT.setOnTouchListener(this);
         //testBT3 = (TestButton) findViewById(R.id.test_bt3);
         testBT.setOnClickListener(this);
         testBT2.setOnClickListener(this);
+        mRrootLayout = (ViewGroup) findViewById(R.id.root);
 //        testBT3.setOnClickListener(this);
         animator.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -185,6 +200,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            testBT2.setText("click");
 //            testBT3.startAnimation(animator3);
 //        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        final int X = (int) event.getRawX();
+        final int Y = (int) event.getRawY();
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
+                _xDelta = X - lParams.leftMargin;
+                _yDelta = Y - lParams.topMargin;
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v
+                        .getLayoutParams();
+                layoutParams.leftMargin = X - _xDelta;
+                layoutParams.topMargin = Y - _yDelta;
+                layoutParams.rightMargin = -250;
+                layoutParams.bottomMargin = -250;
+                v.setLayoutParams(layoutParams);
+                break;
+        }
+        mRrootLayout.invalidate();
+        return false;
     }
 }
 
