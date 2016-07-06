@@ -56,4 +56,18 @@ public class SimpleView extends View implements View.OnClickListener {
         this.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.test_reroll));
         invalidate();
     }
+    public interface Callback {
+
+        boolean canChildBeDismissed(View v);
+
+        void onBeginDrag(View v);
+
+        void onSwipeChanged(View v, float delta);
+
+        void onChildDismissed(View v);
+
+        void onSnapBackCompleted(View v);
+
+        void onDragCancelled(View v);
+    }
 }

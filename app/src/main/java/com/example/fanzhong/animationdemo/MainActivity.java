@@ -202,17 +202,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }
     }
 
+    float upX ,upY ,downX ,downY;
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         final int X = (int) event.getRawX();
         final int Y = (int) event.getRawY();
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
+                downX = event.getX();
+                downY = event.getY();
                 RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
                 _xDelta = X - lParams.leftMargin;
                 _yDelta = Y - lParams.topMargin;
                 break;
             case MotionEvent.ACTION_UP:
+                Log.d("onTouchEvent-ACTION_UP","UP");
+                upX = event.getX();
+                upY = event.getY();
+                float x=Math.abs(upX-downX);
+                float y=Math.abs(upY-downY);
+                double z=Math.sqrt(x*x+y*y);
+                int jiaodu=Math.round((float)(Math.asin(y/z)/Math.PI*180));//角度
+
+                if (upY < downY && jiaodu>45) {//上
+                    Log.d("onTouchEvent-ACTION_UP","角度:"+jiaodu+", 動作:上");
+                }else if(upY > downY && jiaodu>45) {//下
+                    Log.d("onTouchEvent-ACTION_UP","角度:"+jiaodu+", 動作:下");
+                }else if(upX < downX && jiaodu<=45) {//左
+                    Log.d("onTouchEvent-ACTION_UP","角度:"+jiaodu+", 動作:左");
+                    // 原方向不是向右時，方向轉右
+//                    if (mDirection != EAST) {
+//                        mNextDirection = WEST;
+//                    }
+                }else if(upX > downX && jiaodu<=45) {//右
+                    Log.d("onTouchEvent-ACTION_UP","角度:"+jiaodu+", 動作:右");
+                    // 原方向不是向左時，方向轉右
+//                    if (mDirection ! = WEST) {
+//                        mNextDirection = EAST;
+//                    }
+                }
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 break;
