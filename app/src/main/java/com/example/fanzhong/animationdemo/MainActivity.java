@@ -273,7 +273,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         mRrootLayout.invalidate();
+        test(this.getApplicationContext());
         return false;
+    }
+
+
+    public void test(Context context){
+
     }
 }
 
