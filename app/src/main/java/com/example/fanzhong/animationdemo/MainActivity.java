@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static android.support.v4.view.ViewCompat.animate;
@@ -44,8 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int lastX;
     int lastY;
     ImageView test = null;
+    PackageListAdapter aa;
+    PackageList2 pl2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        aa = new PackageListAdapter(this);
         btgroup = new ArrayList<>();
         super.onCreate(savedInstanceState);
         MyDatabase myDatabase = new MyDatabase(this);
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (test != null) {
             test.setImageAlpha(0);
         }
+
+        pl2 = new PackageList2(-1, "test");
         testBT = (TestButton) findViewById(R.id.test_bt);
         testBt1 = (Button)findViewById(R.id.test_bt1);
         testBT2 = (TestButton) findViewById(R.id.test_bt2);
@@ -170,9 +177,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     String packageName;
+    LinkedList<PackageList2> list2;
     @Override
     public void onClick(View v) {
         if(v == testBT2) {
+            aa.insertArticle(pl2);
+            list2 = aa.getAllArticles();
+            for(PackageList2 pls2 : list2){
+                Log.e("Fanzhong", "pls2: " + pls2.getTitle() + " id: " + pls2.getId());
+            }
+
+            aa.removeArticle(12);
             test.setImageAlpha(255);
             test.startAnimation(animator4);
             Intent intent = new Intent();

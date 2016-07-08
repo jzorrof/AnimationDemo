@@ -40,7 +40,6 @@ public class MyDatabase extends SQLiteOpenHelper{
                     + Package_Key + " TEXT,"
                     + Package_Name + " TEXT"
                     + " );"
-
             );
         }
 
