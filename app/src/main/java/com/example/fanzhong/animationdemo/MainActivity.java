@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for(PackageList2 pls2 : list2){
                 Log.e("Fanzhong", "pls2: " + pls2.getTitle() + " id: " + pls2.getId());
             }
-
+            list2.size();
             aa.removeArticle(12);
             test.setImageAlpha(255);
             test.startAnimation(animator4);

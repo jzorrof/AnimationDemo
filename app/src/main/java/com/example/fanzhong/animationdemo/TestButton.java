@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Button;
 
+import java.util.LinkedList;
+
 import static android.support.v4.view.ViewCompat.animate;
 
 /**
@@ -32,4 +34,5 @@ public class TestButton extends Button {
         Intent intent = new Intent("TESTTEST");
         getContext().sendBroadcast(intent);
     }
+    LinkedList a;
 }
