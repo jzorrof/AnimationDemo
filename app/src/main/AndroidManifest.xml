@@ -27,8 +27,8 @@
         </receiver>
 
         <provider
-            android:name=".PackageProvider"
-            android:authorities="com.sunmi.provider.packagelist"
+            android:name=".TestPackageProvider"
+            android:authorities="com.fanzhong.provider.packagelist"
             android:enabled="true"
             android:exported="true"></provider>
     </application>

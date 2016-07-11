@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,12 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView test = null;
     PackageListAdapter aa;
     PackageList2 pl2;
-
+    private TestObserver tobs;
+    private static final int MSG_SEND_PACKAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         aa = new PackageListAdapter(this);
         btgroup = new ArrayList<>();
         super.onCreate(savedInstanceState);
+        tobs = new TestObserver(this, mHandler);
         MyDatabase myDatabase = new MyDatabase(this);
         myDatabase.addPackageName(new PackageList("com.android.abcd","1234"));
         myDatabase.addPackageName(new PackageList("com.android.abce","1234"));
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBT.setOnClickListener(this);
         testBT2.setOnClickListener(this);
         mRrootLayout = (ViewGroup) findViewById(R.id.root);
+        registerContentObservers();
 //        testBT3.setOnClickListener(this);
         animator.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -277,9 +281,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
+    private void registerContentObservers(){
+        getContentResolver().registerContentObserver(PackageL.CONTENT_URI ,true, tobs);
+        Log.e("Fanzhong", "123");
+    }
 
     public void test(Context context){
 
     }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case MSG_SEND_PACKAGE:
+                    Log.e("Fanzhong", "1");
+                    break;
+            }
+        }
+    };
 }
 

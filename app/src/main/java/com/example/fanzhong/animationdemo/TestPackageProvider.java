@@ -18,11 +18,11 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-public class PackageProvider extends ContentProvider {
+public class TestPackageProvider extends ContentProvider {
 
     private static final String LOG_TAG = "shy.luo.providers.articles.ArticlesProvider";
 
-    private static final String DB_NAME = "PackageL.db";
+    private static final String DB_NAME = "tests.db";
     private static final String DB_TABLE = "PackageList";
     private static final int DB_VERSION = 1;
 
@@ -51,7 +51,7 @@ public class PackageProvider extends ContentProvider {
     private DBHelper dbHelper = null;
     private ContentResolver resolver = null;
 
-    public PackageProvider() {
+    public TestPackageProvider() {
     }
 
     @Override

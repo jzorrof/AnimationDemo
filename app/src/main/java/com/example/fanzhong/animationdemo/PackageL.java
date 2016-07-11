@@ -19,7 +19,7 @@ public class PackageL {
     public static final String KEY_ITEM_COUNT = "KEY_ITEM_COUNT";
 
     /*Authority*/
-    public static final String AUTHORITY = "com.sunmi.provider.packagelist";
+    public static final String AUTHORITY = "com.fanzhong.provider.packagelist";
 
     /*Match Code*/
     public static final int ITEM = 1;
@@ -28,8 +28,8 @@ public class PackageL {
     public static final int ITEM_TITLE = 4;
 
     /*MIME*/
-    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.sunmi.provider.packagelist";
-    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.sunmi.provider.packagelis";
+    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.fanzhong.provider.packagelist";
+    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.fanzhong.provider.packagelis";
 
     /*Content URI*/
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/item");
