@@ -152,6 +152,13 @@ public class TestPackageProvider extends ContentProvider {
                 limit = pos + ", 1";
                 break;
             }
+            case PackageL.ITEM_TITLE: {
+                String pos = uri.getPathSegments().get(1);
+                sqlBuilder.setTables(DB_TABLE);
+                sqlBuilder.setProjectionMap(articleProjectionMap);
+                limit = pos + ", 1";
+                break;
+            }
             default:
                 throw new IllegalArgumentException("Error Uri: " + uri);
         }

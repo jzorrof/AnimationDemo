@@ -136,4 +136,23 @@ public class PackageListAdapter {
 
         return new PackageList2(id, title);
     }
+//
+//    public PackageList2 getPackageListsbyName(String name){
+//        PackageList2 pls2 = null;
+//
+//        String[] projection = new String []{
+//                PackageL.ID,
+//                PackageL.PACKAGE_NAME,
+//        };
+//        Cursor cursor = resolver.query(PackageL.CONTENT_TITLE_URI, projection, null, null, PackageL.DEFAULT_SORT_ORDER);
+//        if(!cursor.moveToFirst()){
+//            return null;
+//        }
+//        int id = cursor.getInt(0);
+//        String tiltle = cursor.getString(1);
+//
+//        pls2 = new PackageList2(id ,tiltle);
+//
+//        return pls2;
+//    }
 }
