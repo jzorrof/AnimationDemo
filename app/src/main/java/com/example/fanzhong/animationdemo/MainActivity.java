@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
+import com.example.fanzhong.animationdemo.misc.Tools;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -53,6 +56,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         aa = new PackageListAdapter(this);
+        Log.e(Tools.TAG, "getName");
+
+
+        try {
+            Bitmap bm = Tools.getThumbnail(null, 0, this);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
         btgroup = new ArrayList<>();
         super.onCreate(savedInstanceState);
         tobs = new TestObserver(this, mHandler);

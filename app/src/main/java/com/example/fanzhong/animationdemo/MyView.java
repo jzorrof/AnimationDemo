@@ -65,7 +65,7 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawRoundRect(10, 10, getWidth(), getHeight(),
+        canvas.drawRoundRect(10, 10, 20, 20,
                 10,
                 10, mPaint);
     }
