@@ -3,11 +3,15 @@ package com.example.fanzhong.animationdemo;
 import android.animation.Animator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+//import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +28,8 @@ import android.widget.Toast;
 
 import com.example.fanzhong.animationdemo.misc.Tools;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +37,8 @@ import java.util.List;
 import static android.support.v4.view.ViewCompat.animate;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener{
+
+    private Context mContext;
     ArrayList<TestButton> btgroup;
     TestButton testBT;
     TestButton testBT2;
@@ -57,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         aa = new PackageListAdapter(this);
         Log.e(Tools.TAG, "getName");
-
-
+        mContext=this;
+        createAnimFile("aa", "abcd1234.txt");
         try {
             Bitmap bm = Tools.getThumbnail(null, 0, this);
         } catch (NoSuchFieldException e) {
@@ -68,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+        Log.e("Fanzhong", "dp = " + String.valueOf(px2dip(this, 42.0f)));
         btgroup = new ArrayList<>();
         super.onCreate(savedInstanceState);
         tobs = new TestObserver(this, mHandler);
@@ -83,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("Reading: ", "PackageName: " + p.getPackageName() + " PackageKey: " + p.getPackageKey());
         }
 
-
+        Log.e("Fanzhong","abcd1234");
         setContentView(R.layout.activity_main);
         String a = android.provider.Settings.Global.getString(this.getContentResolver(), "custom_launcher");
         animator = AnimationUtils.loadAnimation(this, R.anim.test_interpolator);
@@ -108,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBT2.setOnClickListener(this);
         mRrootLayout = (ViewGroup) findViewById(R.id.root);
         registerContentObservers();
+//        this.sendBroadcastAsUser(this);
 //        testBT3.setOnClickListener(this);
         animator.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -181,6 +191,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    }
 //
 
+        /**
+         * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+         */
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+        }
+
+        /**
+         * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+         */
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -200,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == testBT2) {
+
             aa.insertArticle(pl2);
             list2 = aa.getAllArticles();
             for(PackageList2 pls2 : list2){
@@ -215,6 +242,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sendBroadcast(intent);
             testBT2.ani();
             Log.e("Fanzhong", "click");
+        }else if(v == testBT) {
+            testBT.setText("click");
+            testBT.startAnimation(animator3);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Title")
+                    .setMessage("Dialog content.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                        }
+                    })
+                    .show();
+        }else if(v == testBt1){
+            testBt1.setText("click");
+            testBt1.startAnimation(animator3);
+//            Snackbar.make(v, "data deleted",Snackbar.LENGTH_LONG)
+//                    .setAction("Undo", new View.OnClickListener(){
+//                        @Override
+//                        public void onClick(View v) {
+//                        }
+//                    })
+//                    .show();
         }
         final Intent intent = new Intent();
 
@@ -226,6 +282,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sendBroadcast(intent);
             }
         };
+
+
+        Intent intent1 = new Intent(this,MyViewActivity.class);
+        startActivity(intent1);
 //        } else if(v == testBT2) {
 //            testBT2.setText("click");
 //            testBT2.startAnimation(animator3);
@@ -316,5 +376,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     };
+
+    public  File createAnimFile(String directory, String fileName) {
+
+        File file = new File(this.getApplicationContext().getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), fileName);
+        Log.e("Fanzhong","state:" + Environment.getExternalStorageState() +
+                " ext: " + Environment.getExternalStorageDirectory());
+        if (!file.mkdirs()) {
+            Log.e("Fanzhong", "Directory not created");
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+//        File file = new File(directory, fileName);
+//        if (file.exists()) {
+//            deleteFile(file);
+//        }
+        // 先创建文件所在的目录
+//        file.getParentFile().mkdirs();
+//        try {
+//            // 创建新文件
+//            file.createNewFile();
+//        } catch (IOException e) {
+//            Log.e("Fanzhong","创建新文件时出现了错误。。。");
+//            e.printStackTrace();
+//        }
+//        return file;
+    }
 }
 

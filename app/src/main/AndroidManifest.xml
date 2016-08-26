@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fanzhong.animationdemo">
+    package="com.example.fanzhong.animationdemo" >
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +20,7 @@
 
         <receiver
             android:name=".Receiver"
-            android:enabled="true">
+            android:enabled="true" >
             <intent-filter>
 
                 <!-- <action android:name="com.china.ui.NEW_LIFEFORM"/> -->
@@ -30,7 +32,10 @@
             android:name=".TestPackageProvider"
             android:authorities="com.fanzhong.provider.packagelist"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <activity android:name=".MyViewActivity" >
+        </activity>
     </application>
 
 </manifest>

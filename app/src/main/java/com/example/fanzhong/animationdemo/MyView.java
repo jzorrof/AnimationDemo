@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -50,13 +51,25 @@ public class MyView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         //super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int minw = getPaddingLeft() + getPaddingRight();
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int minh = getPaddingBottom() + getPaddingTop();
+        int measuredHeight, measuredWidth;
 
+        if (widthMode == MeasureSpec.EXACTLY) {
+        } else {
+        }
+
+        if (heightMode == MeasureSpec.EXACTLY) {
+        } else {
+        }
         int w = Math.max(minw, width);
         int h = Math.max(minh, height);
+        Log.e("Fanzhong", "width == " + w + " height == " + h);
         setMeasuredDimension(w, h);
 
     }
